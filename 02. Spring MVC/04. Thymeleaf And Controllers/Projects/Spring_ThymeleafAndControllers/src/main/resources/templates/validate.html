@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{fragments/head}"/>
+<body>
+<th:block th:include="~{fragments/header}"/>
+<h1>Hello Validate!</h1>
+<h3>Validate some text</h3>
+<form th:action="@{/validate}" th:method="post" th:object="${someModel}">
+    <div class="form-group">
+        <label for="nameId">Name</label>
+        <input id="nameId" type="text" th:field="*{name}" class="form-control short"
+               th:classappend="${#fields.hasErrors('*{name}')} ? 'is-invalid' : 'is-valid'"/>
+        <br/>
+        <label for="ageId">Age</label>
+        <input id="ageId" type="text" th:field="*{age}" class="form-control short"
+               th:classappend="${#fields.hasErrors('${someModel.age}')} ? 'is-invalid' : 'is-valid'"/>
+        <ul th:if="${#fields.hasErrors('*')}">
+            <h3>First option of showing Errors</h3>
+            <li th:each="error : ${#fields.errors('*')}" th:text="${error}">
+            </li>
+        </ul>
+        <ul th:if="${#fields.hasErrors('${someModel.*}')}">
+            <h3>Second option of showing Errors</h3>
+            <li th:each="error : ${#fields.errors('${someModel.*}')}" th:text="${error}">
+            </li>
+        </ul>
+        <ul th:if="${#fields.hasErrors('${someModel.name}')}">
+            <h3>Errors for name</h3>
+            <li th:each="error : ${#fields.errors('${someModel.name}')}" th:text="${error}">
+            </li>
+        </ul>
+        <ul th:if="${#fields.hasErrors('${someModel.age}')}">
+            <h3>Errors for age</h3>
+            <li th:each="error : ${#fields.errors('${someModel.age}')}" th:text="${error}">
+            </li>
+        </ul>
+        <br/>
+        <button>Submit</button>
+    </div>
+</form>
+</body>
+</html>

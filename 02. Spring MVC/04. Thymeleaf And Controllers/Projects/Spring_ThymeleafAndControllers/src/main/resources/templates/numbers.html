@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{fragments/head}"/>
+<body>
+<th:block th:include="~{fragments/header}"/>
+<h1>Hello Numbers!</h1>
+<h3>NumberFormatting</h3>
+<div th:text="${#numbers.formatDecimal(num, 2, 3)}"></div>
+<h3>Loop from Thymeleaf</h3>
+<div>
+    <th:block th:each="number : ${#numbers.sequence(0, 3)}" th:text="${number+ ' '}"/>
+</div>
+<h3>Aggregate functions
+    <div>
+        <th:block th:text="${#aggregates.sum(numbers)}"/>
+    </div>
+</h3>
+</body>
+</html>

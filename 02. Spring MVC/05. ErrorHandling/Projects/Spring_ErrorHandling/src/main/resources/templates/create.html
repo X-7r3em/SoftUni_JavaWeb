@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{_shared/head}"/>
+<body>
+<th:block th:include="~{_shared/header}"/>
+<h2>Upload a file</h2>
+<form th:action="@{/create}" th:method="post" enctype="multipart/form-data">
+    <input type="file" name="file"/>
+    <button>Create</button>
+</form>
+<section>
+    <ul th:each="file : ${files}">
+       <li>
+           <span th:text="${file.name}"></span>
+           <a th:href="@{${file.downloadURL}}">Download Link</a>
+           <a th:href="@{/create/d/{publicId}(publicId=${file.publicId})}">Delete Link</a>
+       </li>
+    </ul>
+</section>
+</body>
+</html>

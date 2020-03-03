@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+<h1>[[${text}]]</h1>
+<ul>
+    <li th:each="beer : ${beers}">
+        [[${beer.getName()}]]
+    </li>
+</ul>
+<form action="/" method="post">
+    <label>Name
+        <input type="text" name="name">
+    </label>
+    <button>Create</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{fragments/head}"/>
+<body>
+<th:block th:include="~{fragments/header}"/>
+<h1>Hello Scrips!</h1>
+<h3>Console log a script</h3>
+<script th:inline="javascript">
+    var msg = [[${message}]];
+    console.log(msg);
+</script>
+</body>
+</html>

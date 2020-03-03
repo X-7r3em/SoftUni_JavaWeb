@@ -1,0 +1,5 @@
+ul.navigation li {
+    display: inline-block;
+    padding-right: 30px;
+    font-size: 24px;
+}

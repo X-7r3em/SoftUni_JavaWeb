@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<head>
+    <title>HelloWorldBean</title>
+</head>
+<h:body>
+    <ui:composition template="common.xhtml">
+        <ui:define name="header">
+            <ui:insert>
+                <ui:include src="header.xhtml">
+                    <ui:param name="name" value="#{HelloWorld.name}"/>
+                </ui:include>
+            </ui:insert>
+        </ui:define>
+        <ui:define name="content">
+            <h:outputLabel value="Text">
+                <h:inputText value="#{HelloWorld.name}" pt:placeholder="Enter name"/>
+                <h1>
+                    <h:outputText value="#{HelloWorld.name}"/>
+                </h1>
+            </h:outputLabel>
+            <br/>
+            <h:outputLabel value="Password">
+                <h:inputSecret>
+                    <f:validateLength maximum="10" minimum="5"/>
+                </h:inputSecret>
+            </h:outputLabel>
+            <h:commandButton value="Submit the name"/>
+            <br/>
+            <h:selectOneRadio>
+                <c:forEach var="item" items="#{HelloWorld.messages}">
+                    <f:selectItem itemValue="#{item}" itemLabel="Select #{item}"/>
+                </c:forEach>
+            </h:selectOneRadio>
+            <br/>
+            <h:selectOneMenu>
+                <c:forEach var="item" items="#{HelloWorld.messages}">
+                    <f:selectItem itemValue="#{item}" itemLabel="Select #{item}"/>
+                </c:forEach>
+            </h:selectOneMenu>
+            <br/>
+            <h:selectManyMenu>
+                <c:forEach var="item" items="#{HelloWorld.messages}">
+                    <f:selectItem itemValue="#{item}" itemLabel="Select #{item}"/>
+                </c:forEach>
+            </h:selectManyMenu>
+            <br/>
+            <h:outputFormat value="I am {0}">
+                <f:param value="#{HelloWorld.messages.get(0)}"/>
+            </h:outputFormat>
+            <script
+                    src="https://code.jquery.com/jquery-3.4.1.min.js"
+                    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+                    crossorigin="anonymous"></script>
+            <h:outputScript>
+                $(document.body).css("background", "yellow");
+            </h:outputScript>
+            <br/>
+            <h:outputText value="#{HelloWorld.date}">
+                <f:convertDateTime type="both" dateStyle="full" timeStyle="full"/>
+            </h:outputText>
+            <br/>
+            <h:outputText value="#{HelloWorld.date}">
+                <f:convertDateTime pattern="HH:mm:ss"/>
+            </h:outputText>
+            <br/>
+            <h:outputText value="#{HelloWorld.date}">
+                <f:convertDateTime pattern="HH:mm:ss E dd MM yyyy" locale="bg"/>
+            </h:outputText>
+            <h:dataTable var="hero" value="#{HelloWorld.superHeroes}">
+                <h:column>
+                    #{hero.name}
+                </h:column>
+                <h:column>
+                    #{hero.secretIdentity}
+                </h:column>
+            </h:dataTable>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

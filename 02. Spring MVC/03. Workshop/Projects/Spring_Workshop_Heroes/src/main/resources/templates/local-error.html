@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{_shared/head}"/>
+<body>
+<th:block th:include="~{_shared/header}"/>
+<main>
+    <h2>Local Error Handled</h2>
+    <h3 th:text="${message}"></h3>
+</main>
+<th:block th:include="~{_shared/footer}"/>
+</body>
+</html>

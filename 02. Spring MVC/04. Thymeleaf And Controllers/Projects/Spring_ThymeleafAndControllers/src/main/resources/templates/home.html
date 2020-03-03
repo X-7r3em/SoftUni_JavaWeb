@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{fragments/head}"/>
+<body>
+<th:block th:include="~{fragments/header}"/>
+<h1>Hello world!</h1>
+<h2>Dates</h2>
+<h3>Java.util.Date with functions</h3>
+<div th:text="${#dates.format(date, 'dd-MMM-yyyy')}"></div>
+<h3>Java.time.LocalDate with functions</h3>
+<div th:text="${#temporals.format(localDate, 'dd-MMM-yyyy')}"></div>
+<h3>Normal date as text</h3>
+<div th:text="${date}"></div>
+<h2>String</h2>
+<h3>Substring from 01234 - index 0 - 2</h3>
+<div th:text="${#strings.substring(text, 0, 2)}"></div>
+<h3>Uppercase text</h3>
+<div th:text="${#strings.capitalize(#strings.toLowerCase(allUpperCase))}"></div>
+</body>
+</html>

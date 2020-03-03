@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+Home
+<div sec:authorize="hasAuthority('ADMIN')">
+    Has Authority Admin
+</div>
+<div sec:authorize="hasAuthority('USER')">
+    Has Authority User
+</div>
+<th:block th:text="${session.fromFilter}"></th:block>
+<br/>
+<th:block th:text="${interceptor}"></th:block>
+<br/>
+<form th:action="@{/home}" th:object="${command}" method="post">
+    <ul>
+        <li th:each="checkboxValue: ${allValues}">
+            <input type="checkbox"
+                   th:field="${command.selectedValues}"
+                   th:value="${checkboxValue}"/>
+            <label
+                    th:for="${#ids.prev('selectedValues')}"
+                    th:text="${checkboxValue}"></label>
+        </li>
+    </ul>
+    <button>Submit</button>
+</form>
+
+</form>
+</body>
+</html>
